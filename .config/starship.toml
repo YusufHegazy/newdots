@@ -1,0 +1,51 @@
+add_newline = false
+
+[aws]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[julia]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[php]
+disabled = true
+
+[terraform]
+disabled = true
+
+[zig]
+disabled = true
+
+[purescript]
+disabled = true
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 10
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "bold yellow"

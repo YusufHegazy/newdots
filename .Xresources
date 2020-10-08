@@ -1,0 +1,31 @@
+! Configuration
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintfull
+URxvt.termName: rxvt-256color
+URxvt.buffered: false
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.font: xft:Iosevka Nerd Font Mono:pixelsize=13:regular
+!! colorscheme
+
+! special
+URxvt.foreground: #FFFFFF
+URxvt.background: #181818
+URxvt.title: urxvt
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!URxvt.transparent:   true
+!URxvt.shading:       50
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
