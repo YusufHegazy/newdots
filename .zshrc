@@ -150,9 +150,9 @@ export LESS=-r
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/homebrew/Cellar/zsh-syntax-highlighting/0.7.1/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/homebrew/Cellar/zsh-history-substring-search/1.0.2/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -161,7 +161,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Apply different settigns for different terminals
-case $(basename "$(cat "/proc/$PPID/comm")") in
+case $(basename "") in
   login)
     	RPROMPT="%{$fg[red]%} %(?..[%?])" 
     	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
@@ -180,14 +180,14 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
 #		#BASE16_SHELL="/usr/share/zsh/scripts/base16-shell/base16-$theme.$shade.sh"
 #		#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 #		# Use autosuggestion
-#		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#		source /usr/local/homebrew/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 #  		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 #     ;;
   *)
         RPROMPT='$(git_prompt_string)'
 		# Use autosuggestion
-		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+		source /usr/local/homebrew/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 		ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
   		ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     ;;
@@ -195,7 +195,23 @@ esac
 eval "$(starship init zsh)"
 alias grep="grep --color"
 alias vim=nvim
-export BROWSER=/usr/bin/google-chrome-stable
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 alias ls=lsd
 alias ll="ls -la"
+alias gogit="git add . && git commit -m "latest commit" && git push -u origin master"
+export PATH=$PATH:/usr/local/homebrew/bin
+export PATH=$PATH:$HOME/myscripts
+pastebin()
+{
+    local url='http://paste.c-net.org/'
+    if (( $# )); then
+        local file
+        for file; do
+            curl -s \
+                --data-binary @"$file" \
+                --header "X-FileName: ${file##*/}" \
+                "$url"
+        done
+    else
+        curl -s --data-binary @- "$url"
+    fi
+}
